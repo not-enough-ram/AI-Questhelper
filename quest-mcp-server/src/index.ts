@@ -4,6 +4,7 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprot
 import { initDatabase } from './database.js';
 import { npcTools } from './tools/npc-tools.js';
 import { relationshipTools } from './tools/relationship-tools.js';
+import { questTools } from './tools/quest-tools.js';
 
 // Initialize database
 initDatabase();
@@ -35,6 +36,7 @@ type ToolDefinition = {
 const allTools: Record<string, ToolDefinition> = {
   ...npcTools,
   ...relationshipTools
+  ...questTools
 };
 
 // Register tool list handler
