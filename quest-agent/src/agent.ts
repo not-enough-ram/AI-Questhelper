@@ -107,6 +107,14 @@ export class QuestAgent {
     }));
   }
 
+  private logToolSequence: Array<{
+  iteration: number;
+  tool: string;
+  args: any;
+  result: string;
+  timestamp: number;
+}> = [];
+
   private isStuck(): boolean {
     if (this.toolCallHistory.length < 3) return false;
     

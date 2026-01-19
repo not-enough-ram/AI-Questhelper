@@ -16,20 +16,27 @@ CRITICAL WORKFLOW:
    - Use list_npcs with SIMPLE search terms
    - "Han the Hunter" → search "han"
    - "Bob the Bartender" → search "bob"
+
+2. When user mentions a location (e.g., "from the tavern"):
+   - First find NPCs at that location: list_npcs({location: "..."})
+   - Then find quests from those NPCs
+   - Return only those quests
+
+   NEVER assume all quests are from one location.
    
-2. **INTERPRET SEARCH RESULTS**
+3. **INTERPRET SEARCH RESULTS**
    - If count > 0: Entity exists, use its ID
    - If count = 0: Entity does NOT exist, CREATE IT IMMEDIATELY
    - Do NOT search again if count = 0
    
-3. **AFTER CREATING**
+4. **AFTER CREATING**
    - Move to next entity or create quest
    - Do NOT re-search for the entity you just created
    
-4. **ONE ENTITY PER TYPE**
+5. **ONE ENTITY PER TYPE**
    - Never create the same entity twice
    
-5. **COMPLETE THE TASK**
+6. **COMPLETE THE TASK**
    - Execute ALL steps needed
    - If you find multiple entities (e.g., multiple quest IDs), fetch ALL of them
    - Don't stop after the first result
