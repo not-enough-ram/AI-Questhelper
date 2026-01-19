@@ -166,8 +166,9 @@ export const questTools = {
       }]
     };
   },
+},
 
-  list_quests_by_npc_name: {
+list_quests_by_npc_name: {
   definition: {
     name: 'list_quests_by_npc_name',
     description: 'Find all quests involving an NPC by searching for the NPC name',
@@ -286,4 +287,4 @@ export const questTools = {
       };
     }
   }
-}};
+}
