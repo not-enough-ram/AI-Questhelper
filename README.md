@@ -10,22 +10,6 @@ Learning Project - Not Production Ready
     Agentic Client: In development
     Quest Management Tools: Planned
 
-Architecture
-
-┌─────────────────────────────────────┐
-│  Quest Agent (Ollama + MCP Client)  │
-│  - Handles user requests            │
-│  - Orchestrates tool calls          │
-│  - Multi-step reasoning loop        │
-└─────────────────────────────────────┘
-              ↕ stdio
-┌─────────────────────────────────────┐
-│  Quest MCP Server                   │
-│  - Tool definitions & handlers      │
-│  - SQLite database (quest.db)       │
-│  - TypeScript + MCP SDK             │
-└─────────────────────────────────────┘
-
 Learning Goals
 
     MCP Protocol: Understanding tool protocols beyond simple API calls
