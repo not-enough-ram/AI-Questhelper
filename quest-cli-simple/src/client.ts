@@ -29,7 +29,7 @@ export class QuestMCPClient {
     });
 
     await this.client.connect(this.transport);
-    console.log('✅ Connected to Quest MCP Server\n');
+    console.log('Connected to Quest MCP Server\n');
 
     const tools = await this.client.listTools();
     console.log('Available tools:');
@@ -42,7 +42,7 @@ export class QuestMCPClient {
   }
 
   async callTool(name: string, args: any): Promise<MCPToolResult> {
-    console.log(`\n🔧 Calling tool: ${name}`);
+    console.log(`\nCalling tool: ${name}`);
     console.log(`   Arguments:`, JSON.stringify(args, null, 2));
     
     const result = await this.client.callTool({ name, arguments: args });
@@ -56,6 +56,6 @@ export class QuestMCPClient {
 
   async disconnect() {
     await this.client.close();
-    console.log('\n✅ Disconnected');
+    console.log('\nDisconnected');
   }
 }

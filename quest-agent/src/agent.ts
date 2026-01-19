@@ -50,13 +50,13 @@ export class QuestAgent {
 
       // Check if agent wants to use tools
       if (!response.message.tool_calls || response.message.tool_calls.length === 0) {
-        console.log(`\n✅ Final Answer: ${response.message.content}`);
+        console.log(`\nFinal Answer: ${response.message.content}`);
         return response.message.content;
       }
 
       // Execute tool calls (should be only one per iteration ideally)
       for (const toolCall of response.message.tool_calls) {
-        console.log(`\n🔧 Tool Call: ${toolCall.function.name}`);
+        console.log(`\nTool Call: ${toolCall.function.name}`);
         console.log(`   Arguments:`, JSON.stringify(toolCall.function.arguments, null, 2));
 
         try {
@@ -66,7 +66,7 @@ export class QuestAgent {
           );
 
           const resultText = result.content[0].text;
-          console.log(`   ✅ Result:`, resultText);
+          console.log(`   Result:`, resultText);
 
           // Add tool result to conversation
           messages.push({
@@ -78,7 +78,7 @@ export class QuestAgent {
 
         } catch (error) {
           const errorMsg = `Tool execution failed: ${error}`;
-          console.log(`   ❌ Error:`, errorMsg);
+          console.log(`   Error:`, errorMsg);
           
           messages.push({
             role: 'tool',
@@ -89,11 +89,11 @@ export class QuestAgent {
 
       // Safety check: detect loops
       if (this.isStuck()) {
-        return "⚠️ I seem to be stuck in a loop. Could you rephrase your request or be more specific?";
+        return "I seem to be stuck in a loop. Could you rephrase your request or be more specific?";
       }
     }
 
-    return `⚠️ Reached maximum iterations (${this.maxIterations}). The task may be too complex. Try breaking it into smaller requests.`;
+    return `Reached maximum iterations (${this.maxIterations}). The task may be too complex. Try breaking it into smaller requests.`;
   }
 
   private convertMCPToolsToOllamaFormat(mcpTools: any[]): any[] {
@@ -116,7 +116,7 @@ export class QuestAgent {
     );
     
     if (allSameTool) {
-      console.log(`\n⚠️ Warning: Same tool called 3 times in a row!`);
+      console.log(`\nWarning: Same tool called 3 times in a row!`);
     }
     
     return allSameTool;

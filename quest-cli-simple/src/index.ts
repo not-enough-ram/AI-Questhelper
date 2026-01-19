@@ -85,11 +85,11 @@ async function main() {
     });
 
     console.log('\n' + '='.repeat(50));
-    console.log('✅ ALL TESTS PASSED!');
+    console.log('ALL TESTS PASSED!');
     console.log('='.repeat(50));
 
   } catch (error) {
-    console.error('\n❌ Error:', error);
+    console.error('\nError:', error);
     process.exit(1);
   } finally {
     await client.disconnect();

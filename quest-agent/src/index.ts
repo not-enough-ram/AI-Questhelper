@@ -3,14 +3,14 @@ import { QuestMCPClient } from './mcp-client.js';
 import { QuestAgent } from './agent.js';
 
 async function main() {
-  console.log('🎲 Quest Agent Starting...\n');
+  console.log('Quest Agent Starting...\n');
   
   const mcpClient = new QuestMCPClient();
   const agent = new QuestAgent(mcpClient);
 
   // Connect to MCP server
   await mcpClient.connect();
-  console.log('✅ Connected to Quest MCP Server\n');
+  console.log('Connected to Quest MCP Server\n');
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -18,7 +18,7 @@ async function main() {
   });
 
   console.log('='  .repeat(60));
-  console.log('🎲 Quest Agent Ready!');
+  console.log('Quest Agent Ready!');
   console.log('='  .repeat(60));
   console.log('Commands:');
   console.log('  - Type your request and press Enter');
@@ -32,7 +32,7 @@ async function main() {
       const trimmed = input.trim();
 
       if (trimmed.toLowerCase() === 'exit') {
-        console.log('\n👋 Goodbye!');
+        console.log('\nGoodbye!');
         await mcpClient.disconnect();
         rl.close();
         return;
@@ -40,7 +40,7 @@ async function main() {
 
       if (trimmed.toLowerCase() === 'reset') {
         agent.resetHistory();
-        console.log('\n🔄 Conversation history cleared\n');
+        console.log('\nConversation history cleared\n');
         askQuestion();
         return;
       }
@@ -53,7 +53,7 @@ async function main() {
       try {
         await agent.run(trimmed);
       } catch (error) {
-        console.error('\n❌ Error:', error);
+        console.error('\nError:', error);
       }
 
       console.log(); // Empty line before next prompt
