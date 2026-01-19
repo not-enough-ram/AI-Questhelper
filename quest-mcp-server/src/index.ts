@@ -21,8 +21,18 @@ const server = new Server(
   }
 );
 
+// Tool type definition
+type ToolDefinition = {
+  definition: {
+    name: string;
+    description: string;
+    inputSchema: any;
+  };
+  handler: (args: any) => Promise<any>;
+};
+
 // Collect all tools
-const allTools = {
+const allTools: Record<string, ToolDefinition> = {
   ...npcTools,
   ...relationshipTools
 };
@@ -30,14 +40,14 @@ const allTools = {
 // Register tool list handler
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
-    tools: Object.values(allTools).map(tool => tool.definition)
+    tools: Object.values(allTools).map((tool: ToolDefinition) => tool.definition)
   };
 });
 
 // Register tool call handler
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const toolName = request.params.name;
-  const tool = allTools[toolName as keyof typeof allTools];
+  const tool = allTools[toolName];
   
   if (!tool) {
     throw new Error(`Unknown tool: ${toolName}`);

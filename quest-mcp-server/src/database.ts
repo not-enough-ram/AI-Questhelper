@@ -13,7 +13,7 @@ if (!existsSync(dataDir)) {
 }
 
 const dbPath = join(dataDir, 'quest.db');
-export const db = new Database(dbPath);
+export const db: Database.Database = new Database(dbPath);
 
 // Enable foreign keys
 db.pragma('foreign_keys = ON');
