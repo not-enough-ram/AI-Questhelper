@@ -35,7 +35,7 @@ type ToolDefinition = {
 // Collect all tools
 const allTools: Record<string, ToolDefinition> = {
   ...npcTools,
-  ...relationshipTools
+  ...relationshipTools,
   ...questTools
 };
 
